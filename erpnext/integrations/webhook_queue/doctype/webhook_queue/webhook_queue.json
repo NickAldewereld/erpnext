@@ -1,0 +1,29 @@
+{
+  "doctype": "DocType",
+  "name": "Webhook Queue",
+  "module": "Integrations",
+  "custom": 0,
+  "is_standard": 1,
+  "is_submittable": 0,
+  "title_field": "target_url",
+  "fields": [
+    {"fieldname": "target_url", "fieldtype": "Data", "label": "Target URL", "reqd": 1},
+    {"fieldname": "event", "fieldtype": "Data", "label": "Event"},
+    {"fieldname": "payload", "fieldtype": "Long Text", "label": "Payload"},
+    {"fieldname": "headers", "fieldtype": "Long Text", "label": "Headers"},
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Queued\nDelivered\nDead Letter",
+      "default": "Queued"
+    },
+    {"fieldname": "retry_count", "fieldtype": "Int", "label": "Retry Count", "default": 0},
+    {"fieldname": "next_retry_at", "fieldtype": "Datetime", "label": "Next Retry At"},
+    {"fieldname": "last_error", "fieldtype": "Long Text", "label": "Last Error"},
+    {"fieldname": "last_response", "fieldtype": "Long Text", "label": "Last Response"}
+  ],
+  "permissions": [
+    {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1}
+  ]
+}

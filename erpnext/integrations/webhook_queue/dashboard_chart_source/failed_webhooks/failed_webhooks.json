@@ -1,0 +1,10 @@
+{
+  "doctype": "Dashboard Chart Source",
+  "name": "Failed Webhooks",
+  "module": "Integrations",
+  "source_name": "Failed Webhooks",
+  "chart_name": "Failed Webhooks",
+  "chart_type": "Line",
+  "is_standard": 1,
+  "options": "{}"
+}

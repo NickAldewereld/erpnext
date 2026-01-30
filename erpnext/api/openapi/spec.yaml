@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  title: ERPNext API
+  version: 1.0.0
+paths:
+  /api/method/erpnext.api.v1.router.get_greeting:
+    post:
+      summary: Return a greeting message (v1).
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Validation Error
+        "401":
+          description: Auth Error
+        "404":
+          description: Not Found
+        "429":
+          description: Rate Limited
+        "500":
+          description: Internal Error
+  /api/method/erpnext.api.v2.router.get_greeting:
+    post:
+      summary: Return a greeting message (v2) with breaking change.
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Validation Error
+        "401":
+          description: Auth Error
+        "404":
+          description: Not Found
+        "429":
+          description: Rate Limited
+        "500":
+          description: Internal Error
