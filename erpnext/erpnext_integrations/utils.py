@@ -54,3 +54,9 @@ def get_tracking_url(carrier, tracking_number):
 	if url_reference:
 		tracking_url = frappe.render_template(url_reference, {"tracking_number": tracking_number})
 	return tracking_url
+
+
+def dispatch_webhook(target_url, payload, headers=None, event=None):
+	from erpnext.integrations.webhook_queue.dispatcher import enqueue_webhook
+
+	return enqueue_webhook(target_url, payload, headers=headers, event=event)

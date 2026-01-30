@@ -31,6 +31,9 @@ app_include_icons = [
 	"/assets/erpnext/icons/pos-icons.svg",
 ]
 
+before_request = ["erpnext.api.before_request"]
+after_request = ["erpnext.api.after_request"]
+
 web_include_icons = [
 	"/assets/erpnext/icons/pos-icons.svg",
 ]
@@ -416,6 +419,9 @@ auto_cancel_exempted_doctypes = [
 
 scheduler_events = {
 	"cron": {
+		"*/5 * * * *": [
+			"erpnext.integrations.webhook_queue.dispatcher.process_due_webhooks",
+		],
 		"0/15 * * * *": [
 			"erpnext.manufacturing.doctype.bom_update_log.bom_update_log.resume_bom_cost_update_jobs",
 		],

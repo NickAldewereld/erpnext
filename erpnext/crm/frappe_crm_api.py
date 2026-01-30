@@ -3,6 +3,7 @@ import json
 import frappe
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 
+from erpnext.api.errors import ApiError, api_endpoint, standard_errors_enabled
 
 @frappe.whitelist()
 def create_custom_fields_for_frappe_crm():
@@ -149,6 +150,7 @@ def contact_exists(email, mobile_no):
 
 
 @frappe.whitelist()
+@api_endpoint
 def create_customer(customer_data=None):
 	if not customer_data:
 		customer_data = frappe.form_dict
@@ -165,6 +167,8 @@ def create_customer(customer_data=None):
 		create_contacts(contacts, customer_name, "Customer", customer_name)
 		create_address("Customer", customer_name, customer_data.get("address"))
 		return customer_name
-	except Exception:
+	except Exception as exc:
 		frappe.log_error(frappe.get_traceback(), "Error while creating customer against Frappe CRM Deal")
-		pass
+		if standard_errors_enabled():
+			raise ApiError(code="INTERNAL_ERROR", message=str(exc))
+		return None
